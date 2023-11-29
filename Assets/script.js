@@ -1,29 +1,29 @@
 var dateDisplayEl = $('#currentDay');
 var saveBtn = $(".saveBtn");
 
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
   displayDate();
+  //displaywork()
 
   function saveworkToStorage(event)  {
-    //get the closest id of the '.time-block' class to identify what time
-    var whatTime = $(event.target).closest('.time-block').id;
+    //get the closest class of time-block from the targetted event element and retrieve the id 
+    var whatTime = $(event.target).closest('.time-block').attr('id');
     //get the userinput by find the '.description' class and get the value
     var usertext = $(event.target).closest('.time-block').find('.description').val();
-    //get works from localStorage, if empty then create a new array
-    var workitems = JSON.parse(localStorage.getItem('works')) || [];
-    //add the user input into the workitems retrieved from the localStorage 
-    workitems.push({
-      time: whatTime,
-      details: usertext
-    });
     //update localStorage 
-    localStorage.setItem("works", JSON.stringify(workitems));
-
+    localStorage.setItem(whatTime, usertext);
   }
-  
+  /*
+  function displaywork()  {
+    var work = localStorage.getItem(whatTime);
+    var detail = $('.description');
+    detail.text = work;
+  }
+  */
   saveBtn.on("click", saveworkToStorage);
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
