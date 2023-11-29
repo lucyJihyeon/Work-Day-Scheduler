@@ -8,19 +8,12 @@ $(function () {
   displayDate();
 
   function saveworkToStorage(event)  {
-    //get the closest id of the '.time-block' class to identify what time
-    var whatTime = $(event.target).closest('.time-block').id;
+    //get the closest class of time-block from the targetted event element and retrieve the id 
+    var whatTime = $(event.target).closest('.time-block').attr('id');
     //get the userinput by find the '.description' class and get the value
     var usertext = $(event.target).closest('.time-block').find('.description').val();
-    //get works from localStorage, if empty then create a new array
-    var workitems = JSON.parse(localStorage.getItem('works')) || [];
-    //add the user input into the workitems retrieved from the localStorage 
-    workitems.push({
-      time: whatTime,
-      details: usertext
-    });
     //update localStorage 
-    localStorage.setItem("works", JSON.stringify(workitems));
+    localStorage.setItem(whatTime, usertext);
 
   }
   
