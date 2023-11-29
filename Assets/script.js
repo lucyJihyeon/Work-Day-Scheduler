@@ -1,11 +1,13 @@
 var dateDisplayEl = $('#currentDay');
 var saveBtn = $(".saveBtn");
 
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
   displayDate();
+  //displaywork()
 
   function saveworkToStorage(event)  {
     //get the closest class of time-block from the targetted event element and retrieve the id 
@@ -14,9 +16,14 @@ $(function () {
     var usertext = $(event.target).closest('.time-block').find('.description').val();
     //update localStorage 
     localStorage.setItem(whatTime, usertext);
-
   }
-  
+  /*
+  function displaywork()  {
+    var work = localStorage.getItem(whatTime);
+    var detail = $('.description');
+    detail.text = work;
+  }
+  */
   saveBtn.on("click", saveworkToStorage);
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
