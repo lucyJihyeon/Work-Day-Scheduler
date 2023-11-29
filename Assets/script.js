@@ -7,8 +7,8 @@ var saveBtn = $(".saveBtn");
 // in the html.
 $(function () {
   displayDate();
-  //displaywork()
-
+  displaywork()
+  //The purpose of this function is to save the user input into the localStorage 
   function saveworkToStorage(event)  {
     //get the closest class of time-block from the targetted event element and retrieve the id 
     var whatTime = $(event.target).closest('.time-block').attr('id');
@@ -17,13 +17,49 @@ $(function () {
     //update localStorage 
     localStorage.setItem(whatTime, usertext);
   }
-  /*
+  //The purpose of the function is to display the stored values 
   function displaywork()  {
-    var work = localStorage.getItem(whatTime);
-    var detail = $('.description');
-    detail.text = work;
+    //retrieve datas of "hour-9" from the localStorage 
+    var work9 = localStorage.getItem('hour-9');
+    //call the discription box of inside of the hour-9 id element
+    var detail9 = $('#hour-9 .description');
+    //set the value of the textarea 
+    detail9.val(work9);
+    
+    //repeat until hour-17
+    var work10 = localStorage.getItem('hour-10');
+    var detail10 = $('#hour-10 .description');
+    detail10.val(work10);
+
+    var work11 = localStorage.getItem('hour-11');
+    var detail11 = $('#hour-11 .description');
+    detail11.val(work11);
+
+    var work12 = localStorage.getItem('hour-12');
+    var detail12 = $('#hour-12 .description');
+    detail12.val(work12);
+
+    var work13 = localStorage.getItem('hour-13');
+    var detail13 = $('#hour-13 .description');
+    detail13.val(work13);
+
+    var work14 = localStorage.getItem('hour-14');
+    var detail14 = $('#hour-14 .description');
+    detail14.val(work14);
+
+    var work15 = localStorage.getItem('hour-15');
+    var detail15 = $('#hour-15 .description');
+    detail15.val(work15);
+
+    var work16 = localStorage.getItem('hour-16');
+    var detail16 = $('#hour-16 .description');
+    detail16.val(work16);
+
+    var work17 = localStorage.getItem('hour-17');
+    var detail17 = $('#hour-17 .description');
+    detail17.val(work17);
   }
-  */
+  
   saveBtn.on("click", saveworkToStorage);
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
