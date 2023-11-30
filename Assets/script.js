@@ -12,14 +12,29 @@ $(function () {
   displaywork();
   workTime();
   //The purpose of this function is to save the user input into the localStorage 
+  //and display confirm message on the screen
   function saveworkToStorage(event)  {
+    //hide the previous 'section' class to prevent duplicated text
+    $('section').hide();
+    //create container to store the text
+    var container = $('<section>');
+    var saveConfirm = $('<p>');
+    var localstorage = $('<span>').text("localStorage").addClass('localStorage-color');
+    saveConfirm.text("Appointment Added to ");
+    saveConfirm.append(localstorage);
+    container.append(saveConfirm);
+    //prepend the container into the container-lg
+    $('.container-lg').prepend(container);
     //get the closest class of time-block from the targetted event element and retrieve the id 
     var whatTime = $(event.target).closest('.time-block').attr('id');
     //get the userinput by find the '.description' class and get the value
     var usertext = $(event.target).closest('.time-block').find('.description').val();
     //update localStorage 
     localStorage.setItem(whatTime, usertext);
+    
   }
+
+
   //The purpose of the function is to display the stored values 
   function displaywork()  {
     //retrieve datas of "hour-9" from the localStorage 
