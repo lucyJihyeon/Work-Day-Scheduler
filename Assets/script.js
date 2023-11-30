@@ -1,5 +1,7 @@
 var dateDisplayEl = $('#currentDay');
 var saveBtn = $(".saveBtn");
+var idHours = [];
+var idNumbers = [];
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
@@ -7,7 +9,8 @@ var saveBtn = $(".saveBtn");
 // in the html.
 $(function () {
   displayDate();
-  displaywork()
+  displaywork();
+  workTime();
   //The purpose of this function is to save the user input into the localStorage 
   function saveworkToStorage(event)  {
     //get the closest class of time-block from the targetted event element and retrieve the id 
@@ -21,7 +24,7 @@ $(function () {
   function displaywork()  {
     //retrieve datas of "hour-9" from the localStorage 
     var work9 = localStorage.getItem('hour-9');
-    //call the discription box of inside of the hour-9 id element
+    //call the discription box inside of the hour-9 id element
     var detail9 = $('#hour-9 .description');
     //set the value of the textarea 
     detail9.val(work9);
@@ -60,7 +63,7 @@ $(function () {
     detail17.val(work17);
   }
   
-  saveBtn.on("click", saveworkToStorage);
+ 
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
     // local storage. HINT: What does `this` reference in the click listener
@@ -68,19 +71,65 @@ $(function () {
     // time-block containing the button that was clicked? How might the id be
     // useful when saving the description in local storage?
     //
+    saveBtn.on("click", saveworkToStorage);
+
     // TODO: Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour. HINTS: How can the id
     // attribute of each time-block be used to conditionally add or remove the
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
     //
+
+    //The purpose of this function is to compare the current hour and each of the time-block's 
+    //assigned hour and add class of the past, present or futhre accordingly. 
+    function workTime() {
+      //take the current time using dayjs and format it to the military time(just the hour)
+      var workDate = dayjs().format("HH");
+      //convert it to the number 
+      workDate = parseInt(workDate,10);
+      //take all the "time-block" classes and store them into an array, idNumber
+      var idNumber = document.querySelectorAll(".time-block");
+      //loop through each item of the idNumber array 
+      for (var i =0; i < idNumber.length;i++) {
+        //take the id value of each item and split it by '-' 
+        var idSplit = ((idNumber[i].id).split('-'));
+        //becaise the id is fromed ("hour-x"), there will be two items 
+        if (idSplit.length > 1) {
+          //splice the first item by 1 ("hour")
+          idSplit.splice(0,1);
+          //push each spliced array into the idHours array 
+          idHours.push(idSplit)
+        }
+      }
+      
+      //loop through each item of the idHours array
+      for (i=0; i< idHours.length; i++) {
+        //if the value in idHours is less than the current hour, add class of 'past' to the idNumber[i]
+        if(idHours[i] < workDate)  {
+          idNumber[i].classList.add('past');
+        }
+        //if the value in idHours is equal to the current hour, add class of 'present' to the idNumber[i]
+        if(idHours[i] == workDate)  {
+          idNumber[i].classList.add('present');
+        }
+        //if the value in idHours is greater than the current hour, add class of 'future' to the idNumber[i]
+        if(idHours[i] > workDate) {
+          idNumber[i].classList.add('future');
+        }
+      }
+    }
+
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
+    
     // TODO: Add code to display the current date in the header of the page.
+    //The purpose of this function is to display the current date in the header of the page
     function displayDate()  {
+      //retreive the current date from dayjs method and format the value 
       var today = dayjs().format("dddd, MMMM D[th]");
+      //add text of today's value to the displayEl 
       dateDisplayEl.text(today);
     }
 
