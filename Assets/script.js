@@ -17,11 +17,18 @@ $(function () {
     //hide the previous 'section' class to prevent duplicated text
     $('section').hide();
     //create container to store the text
-    var container = $('<section>');
-    var saveConfirm = $('<p>');
+    //add css style to set the items in the middle 
+    var container = $('<section>').css({
+      "display":"flex",
+      "justify-content": "center",
+      "align-items": "center"
+    });
+    var saveConfirm = $('<p>').css("margin", "0");
     var localstorage = $('<span>').text("localStorage").addClass('localStorage-color');
+    var checkmark = $('<i>').addClass("fa fa-check").css("margin-left", "5px");
     saveConfirm.text("Appointment Added to ");
     saveConfirm.append(localstorage);
+    saveConfirm.append(checkmark);
     container.append(saveConfirm);
     //prepend the container into the container-lg
     $('.container-lg').prepend(container);
