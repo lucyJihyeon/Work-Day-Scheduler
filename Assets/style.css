@@ -13,3 +13,9 @@
 .future textarea    {
     background-color: var(--future-color);
 }
+.localStorage-color {
+    color: red;
+}
+section {
+    text-align: center;
+}
