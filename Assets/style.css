@@ -16,6 +16,21 @@
 .localStorage-color {
     color: red;
 }
-section {
-    text-align: center;
+
+
+.fa-save  {
+    transition: font-size 2s 1s;
 }
+.fa-save:active {
+    color: white;
+    
+}
+
+.hour   {
+    border-bottom: 1px dashed black;
+}
+
+.description:focus   {
+    border: 3px solid black;
+}
+
