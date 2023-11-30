@@ -31,7 +31,6 @@ $(function () {
     var usertext = $(event.target).closest('.time-block').find('.description').val();
     //update localStorage 
     localStorage.setItem(whatTime, usertext);
-    
   }
 
 
