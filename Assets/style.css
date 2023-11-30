@@ -1,3 +1,15 @@
 :root   {
-    --btn-color : rgb(175, 175, 234);
+    --current-color : rgb(244, 97, 78);
+    --past-color : rgb(165, 163, 163);
+    --future-color : rgb(135, 167, 135);
+}
+
+.present textarea  {
+    background-color: var(--current-color);
+}
+.past textarea  {
+    background-color: var(--past-color);
+}
+.future textarea    {
+    background-color: var(--future-color);
 }
