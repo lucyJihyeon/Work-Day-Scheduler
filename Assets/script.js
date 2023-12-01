@@ -154,5 +154,27 @@ $(function () {
       dateDisplayEl.text(today);
     }
 
+    //when the save icon is clicked, change style
+    function saveClickHandler() {
+      //store this(.fa-save element) into the variable $this for the setTimeout function 
+      var $this = $(this);
+      $this.css({
+        "font-size":"larger",
+        "color":"white"
+      });
+      //style go back to its default after 0.5 seconds.
+      setTimeout(function () {
+        $this.css({
+          "font-size":"initial",
+          "color":"black"
+        });
+      }, 800);
+    }
+    
+    //Adding EventListner for the save icon 
+    $(".fa-save").on("click",saveClickHandler)
+    
+
+
   });
   
