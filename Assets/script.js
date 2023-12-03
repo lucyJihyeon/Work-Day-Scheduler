@@ -162,7 +162,7 @@ $(function () {
         "font-size":"larger",
         "color":"white"
       });
-      //style go back to its default after 0.5 seconds.
+      //style go back to its default after 0.8 seconds.
       setTimeout(function () {
         $this.css({
           "font-size":"initial",
